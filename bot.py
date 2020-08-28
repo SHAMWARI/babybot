@@ -97,7 +97,7 @@ async def mute(ctx,member:discord.Member):
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
 	await ctx.send(f'Y{member.mention},Ограничен доступ к чату, за нарушение прав!')
-	
+	await ctx.send(embed=emb)
 
 #send_message_member
 @client.command()
