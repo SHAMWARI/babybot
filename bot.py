@@ -92,7 +92,7 @@ async def help(ctx):
 async def mute(ctx,member:discord.Member):
 	emb = discord.Embed(title='Мут', description='Мут участника', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
-	mute_role=discord.itils.get(ctx.message.guild.roles, name='mute')
+	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
 	await member.add_roles(mute_role)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
