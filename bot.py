@@ -83,7 +83,7 @@ async def help(ctx):
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
 	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
-
+	emb.add_field(name='{}mute'.format(PREFIX), value='Мут участника',inline=False)
 	await ctx.send(embed=emb)
 
 #mute
@@ -96,7 +96,6 @@ async def mute(ctx,member:discord.Member):
 	await member.add_roles(mute_role)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
-	await ctx.send(f'Y{member.mention},Ограничен доступ к чату, за нарушение прав!')
 	await ctx.send(embed=emb)
 
 #send_message_member
