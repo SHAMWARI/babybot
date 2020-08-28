@@ -96,6 +96,7 @@ async def mute(ctx,member:discord.Member):
 	await member.add_roles(mute_role)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
+	
 	await ctx.send(embed=emb)
 
 #send_message_member
