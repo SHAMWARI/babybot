@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
-from discord import utils
 import os 
-import config
 
 PREFIX='>'
 
