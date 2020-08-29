@@ -1,5 +1,6 @@
 import discord
 from discord.ext import
+import os 
 
 client = commands.Bot(command_prefix = 'PREFIX', self_bot=False)
 
@@ -12,4 +13,6 @@ async def on_ready():
 async def say(ctx,*,text):
 	await ctx.send(embed=discord.Embed(description=text))
 
-client.run('TOKENBOT2',bot=True)
+token = os.environ.get('TOKENBOT2')
+
+client.run(str(token))
