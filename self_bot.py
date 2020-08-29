@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os 
 
-client = commands.Bot(command_prefix = 'PREFIX', self_bot=False)
+client = commands.Bot(command_prefix = '>', self_bot=False)
 
 @client.event
 async def on_ready():
