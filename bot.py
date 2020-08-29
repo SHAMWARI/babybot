@@ -140,6 +140,6 @@ async def unban_error(ctx,error):
 token = os.environ.get('TOKENBOT')
 token2 = os.environ.get('TOKENBOT2')
 client.run(str(token))
-client.run(str('TOKENBOT2',bot=True))
+client.run(str(token2,bot=True))
 
 
