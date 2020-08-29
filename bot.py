@@ -4,7 +4,7 @@ import os
 
 PREFIX='>'
 
-client = commands.Bot(command_prefix=PREFIX, self_bot=True)
+client = commands.Bot(command_prefix=PREFIX)
 client.remove_command('help')
 
 #online bot
