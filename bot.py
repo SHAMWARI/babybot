@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 import os 
-import self_bot
 
 PREFIX='>'
 
