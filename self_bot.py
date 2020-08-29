@@ -13,6 +13,7 @@ async def on_ready():
 async def say(ctx,*,text):
 	await ctx.send(embed=discord.Embed(description=text))
 
-token = os.environ.get('TOKENBOT2')
+token = os.environ.get('TOKENBOT')
+token2 = os.environ.get('TOKENBOT2')
 
-client.run(str(token))
+client.run("TOKENBOT2",bot=True)
