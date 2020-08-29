@@ -16,5 +16,5 @@ async def say(ctx,*,text):
 token = os.environ.get('TOKENBOT')
 token2 = os.environ.get('TOKENBOT2')
 
-client.run("TOKENBOT2")
+client.run("TOKENBOT2", bot=True)
 client.run(str(token))
