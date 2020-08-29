@@ -4,7 +4,7 @@ import os
 
 PREFIX='>'
 
-client = commands.Bot(command_prefix=PREFIX)
+client = commands.Bot(command_prefix=PREFIX, self_bot=True)
 client.remove_command('help')
 
 #online bot
@@ -40,6 +40,11 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 	emb.add_field(name='Кикнут участник',value='Кикнут участник:{}'.format(member.mention))
 	
 	await ctx.send(embed=emb)
+
+#self_bot
+@client.command()
+async def embed(ctx,*,text):
+	await ctx.send(embed=discord.Embed(description=text,color=0xeeff00))
 
 #ban
 @client.command(pass_context=True)
@@ -133,6 +138,6 @@ async def unban_error(ctx,error):
 
 #token
 token = os.environ.get('TOKENBOT')
-client.run(str(token))
+client.run(str(token),bot=True)
 
 
