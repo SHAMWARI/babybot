@@ -41,11 +41,6 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 	
 	await ctx.send(embed=emb)
 
-#self_bot
-@client.command()
-async def embed(ctx,*,text):
-	await ctx.send(embed=discord.Embed(description=text,color=0xeeff00))
-
 #ban
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
@@ -140,6 +135,6 @@ async def unban_error(ctx,error):
 token = os.environ.get('TOKENBOT')
 
 client.run(str(token))
-client.run('TOKENBOT2')
+
 
 
