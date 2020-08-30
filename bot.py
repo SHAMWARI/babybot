@@ -91,7 +91,7 @@ async def mute(ctx,member:discord.Member):
 #send_message_member
 @client.command()
 async def send_message_member(ctx, member:discord.Member):
-	await member.send(f'{member.mention}, Вставай еблан')
+	await member.send(f'{member.mention}, {message.author}')
 
 @clear.error
 async def clear_error(ctx,error):
