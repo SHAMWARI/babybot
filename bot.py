@@ -110,7 +110,7 @@ async def dm_all(ctx,*,args=None):
 				member.send(args)
 				print("'" + args + "' Отправлено: " + member.name)
 			except:
-				print("Не удалось отправить" + args member.name)
+				print("Не удалось отправить" + args "'to" + member.name)
 	else:
 		await ctx.channel.send("Вы не предоставили аргументов.")
 
