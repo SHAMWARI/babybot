@@ -100,20 +100,6 @@ async def dm(ctx,user_id=None,*,args=None):
 	else:
 		await ctx.channel.send('Юзер айди')
 
-#send_message_all
-@client.command()
-async def dm_all(ctx,*,args=None):
-	if args != None:
-		members=ctx.guild.members
-		for member in members:
-			try:
-				await member.send(args)
-				print("'" + args + "' Отправлено: " + member.name)
-			except:
-				print("Не удалось отправить" + args member.name)
-		else:
-			await ctx.channel.send("Вы не предоставили аргументов.")
-
 @clear.error
 async def clear_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
