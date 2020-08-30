@@ -11,7 +11,6 @@ client.remove_command('help')
 @client.event
 async def on_ready():
 	print('bot connected')
-
 	await client.change_presence(status=discord.Status.online, activity=discord.Game('>help'))
 
 #error argument
@@ -22,38 +21,29 @@ async def on_command_error(ctx,error):
 #clear chat
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
 
 #kick
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def kick(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Кик', description='Кик участника', color=0xeeff00)
-
 	await ctx.channel.purge(limit=1)
 	await member.kick(reason=reason)
-
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Кикнут участник',value='Кикнут участник:{}'.format(member.mention))
-	
 	await ctx.send(embed=emb)
 
 #ban
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def ban(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Бан',description='Бан участника', color=0xeeff00)
-
 	await ctx.channel.purge(limit=1)
 	await member.ban(reason=reason)
-
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Забанен участник', value='Забанен участник:{}'.format(member.mention))
-	
 	await ctx.send(embed=emb)
 
 #unban
@@ -78,7 +68,6 @@ async def unban(ctx, *, member: discord.Member):
 async def help(ctx):
 	await ctx.channel.purge(limit=1)
 	emb=discord.Embed(title='Навигация по командам', color=0xeeff00)
-
 	emb.add_field(name='{}clear'.format(PREFIX),value='Очистка чата',inline=False)
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
@@ -96,7 +85,7 @@ async def mute(ctx,member:discord.Member):
 	await member.add_roles(mute_role)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
-	
+
 	await ctx.send(embed=emb)
 
 #send_message_member
