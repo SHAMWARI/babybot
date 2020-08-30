@@ -85,13 +85,34 @@ async def mute(ctx,member:discord.Member):
 	await member.add_roles(mute_role)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
-
 	await ctx.send(embed=emb)
 
 #send_message_member
 @client.command()
-async def send_message_member(ctx, member:discord.Member):
-	await member.send(f'{member.mention}, {author.message}')
+async def dm(ctx,user_id=None,*,args=None):
+	if user_id != None and args != None:
+		try:
+			target=await client.fetch_user(user_id)
+			await target.send(args)
+			await ctx.channel.send("'" + args + "' Сообщение было отправлено: " + target.name)
+		except:
+			await ctx.channel.send("Не удалось установить dm для данного пользователя.")
+	else:
+		await ctx.channel.send('Юзер айди')
+
+#send_message_all
+@client.command()
+async def dm_all(ctx,*,args=None):
+	if args != None:
+		members=ctx.guild.members
+		for member in members:
+			try:
+				await member.send(args)
+				print("'" + args + "' Отправлено: " + member.name)
+			except:
+				print("Не удалось отправить" + args member.name)
+		else:
+			await ctx.channel.send("Вы не предоставили аргументов.")
 
 @clear.error
 async def clear_error(ctx,error):
