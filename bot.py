@@ -89,6 +89,7 @@ async def mute(ctx,member:discord.Member):
 
 #send_message_member
 @client.command()
+@commands.has_permissions(administrator=True)
 async def dm(ctx,user_id=None,*,args=None):
 	if user_id != None and args != None:
 		try:
