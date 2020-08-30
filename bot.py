@@ -107,7 +107,7 @@ async def dm_all(ctx,*,args=None):
 		members=ctx.guild.members
 		for member in members:
 			try:
-				await member.send(args)
+				member.send(args)
 				print("'" + args + "' Отправлено: " + member.name)
 			except:
 				print("Не удалось отправить" + args member.name)
