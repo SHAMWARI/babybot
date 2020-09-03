@@ -87,27 +87,6 @@ async def help(ctx):
 	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
 	await ctx.send(embed=emb)
 
-#mute
-@client.command()
-@commands.has_permissions(administrator=True)
-async def mute(ctx,member:discord.Member=None, reason=None):
-	emb = discord.Embed(title='Мут', description='Мут участниа', color=0xeeff00)
-	await ctx.channel.purge(limit=1)
-	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
-	await member.add_roles(mute_role)
-	emb.set_author(name=member.name, icon_url=member.avatar_url)
-	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
-	
-	await ctx.send(embed=emb)
-
-#unmute
-@client.command()
-@commands.has_permissions(administrator=True)
-async def unmute(ctx,member:discord.Member=None):
-await ctx.channel.purge(limit=1)
-	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
-	await member.remove_roles(mute_role)
-
 #play
 #@client.command()
 #async def play(ctx, url:str):
