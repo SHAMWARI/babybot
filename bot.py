@@ -105,7 +105,7 @@ async def mute(ctx,member:discord.Member):
 @commands.has_permissions(administrator=True)
 async def unmute(ctx,member:discord.Member):
 await ctx.channel.purge(limit=1)
-	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
+	mute_role=discord.utils.get(ctx.guild.roles, name='mute')
 	await member.remove_roles(mute_role)
 
 #play
