@@ -27,7 +27,6 @@ async def clear(ctx, amount: int):
 #kick
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def kick(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Кик', description='Кик участника', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
@@ -39,7 +38,6 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 #ban
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def ban(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Бан',description='Бан участника', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
@@ -72,8 +70,6 @@ async def help(ctx):
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
 	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
-	emb.add_field(name='{}mute'.format(PREFIX), value='Замьютить участника',inline=False)
-	emb.add_field(name='{}unmute'.format(PREFIX), value='Размьютить участника',inline=False)
 	await ctx.send(embed=emb)
 
 #play
