@@ -1,11 +1,9 @@
 import discord
 from discord.ext import commands
 import os 
-import youtube_dl
 from discord.utils import get
 
 PREFIX='>'
-
 client = commands.Bot(command_prefix=PREFIX)
 client.remove_command('help')
 
@@ -74,12 +72,14 @@ async def help(ctx):
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
 	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
+	emb.add_field(name='{}mute'.format(PREFIX), value='Замьютить участника',inline=False)
+	emb.add_field(name='{}unmute'.format(PREFIX), value='Размьютить участника',inline=False)
 	await ctx.send(embed=emb)
 
 #mute
 @client.command()
 @commands.has_permissions(administrator=True)
-async def mute(ctx,member:discord.Member=None, reason=None):
+async def mute(ctx,member:discord.Member):
 	emb = discord.Embed(title='Мут', description='Мут участниа', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
 	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
@@ -91,7 +91,7 @@ async def mute(ctx,member:discord.Member=None, reason=None):
 #unmute
 @client.command()
 @commands.has_permissions(administrator=True)
-async def unmute(ctx,member:discord.Member=None):
+async def unmute(ctx,member:discord.Member):
 await ctx.channel.purge(limit=1)
 	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
 	await member.remove_roles(mute_role)
