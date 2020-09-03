@@ -91,7 +91,7 @@ async def help(ctx):
 @client.command()
 @commands.has_permissions(administrator=True)
 async def mute(ctx,member:discord.Member):
-	emb = discord.Embed(title='Мут', description='Мут участника', color=0xeeff00)
+	emb = discord.Embed(title='Мут', description='Мут участниа', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
 	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
 	await member.add_roles(mute_role)
@@ -103,7 +103,7 @@ async def mute(ctx,member:discord.Member):
 #unmute
 @client.command()
 @commands.has_permissions(administrator=True)
-async def mute(ctx,member:discord.Member):
+async def unmute(ctx,member:discord.Member):
 await ctx.channel.purge(limit=1)
 	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
 	await member.remove_role(mute_role)
