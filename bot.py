@@ -13,7 +13,6 @@ client.remove_command('help')
 @client.event
 async def on_ready():
 	print('bot connected')
-
 	await client.change_presence(status=discord.Status.online, activity=discord.Game('>help'))
 
 #error argument
@@ -24,7 +23,6 @@ async def on_command_error(ctx,error):
 #clear chat
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
 
@@ -34,13 +32,10 @@ async def clear(ctx, amount: int):
 
 async def kick(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Кик', description='Кик участника', color=0xeeff00)
-
 	await ctx.channel.purge(limit=1)
 	await member.kick(reason=reason)
-
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Кикнут участник',value='Кикнут участник:{}'.format(member.mention))
-	
 	await ctx.send(embed=emb)
 
 #ban
@@ -49,19 +44,15 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 
 async def ban(ctx, member: discord.Member, *, reason=None):
 	emb = discord.Embed(title='Бан',description='Бан участника', color=0xeeff00)
-
 	await ctx.channel.purge(limit=1)
 	await member.ban(reason=reason)
-
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
 	emb.add_field(name='Забанен участник', value='Забанен участник:{}'.format(member.mention))
-	
 	await ctx.send(embed=emb)
 
 #unban
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(title='Разбан', description='Разбан участника', color=0xeeff00)
@@ -76,16 +67,34 @@ async def unban(ctx, *, member: discord.Member):
 
 #help
 @client.command(pass_context=True)
-
 async def help(ctx):
 	await ctx.channel.purge(limit=1)
 	emb=discord.Embed(title='Навигация по командам', color=0xeeff00)
-
 	emb.add_field(name='{}clear'.format(PREFIX),value='Очистка чата',inline=False)
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
 	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
 	await ctx.send(embed=emb)
+
+#mute
+@client.command()
+@commands.has_permissions(administrator=True)
+async def mute(ctx,member:discord.Member=None, reason=None):
+	emb = discord.Embed(title='Мут', description='Мут участниа', color=0xeeff00)
+	await ctx.channel.purge(limit=1)
+	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
+	await member.add_roles(mute_role)
+	emb.set_author(name=member.name, icon_url=member.avatar_url)
+	emb.add_field(name='Замьючен участник',value='Замьючен участник:{}'.format(member.mention))
+	await ctx.send(embed=emb)
+
+#unmute
+@client.command()
+@commands.has_permissions(administrator=True)
+async def unmute(ctx,member:discord.Member=None):
+await ctx.channel.purge(limit=1)
+	mute_role=discord.utils.get(ctx.message.guild.roles, name='mute')
+	await member.remove_roles(mute_role)
 
 #play
 #@client.command()
@@ -183,6 +192,5 @@ async def unban_error(ctx,error):
 		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
 
 #token
-token = open('token.txt', 'r').readline()
-
-client.run(token)
+token = os.environ.get('TOKENBOT')
+client.run(str(token))
