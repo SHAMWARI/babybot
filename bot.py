@@ -129,7 +129,7 @@ async def help(ctx):
 #send_message_member
 @client.command()
 @commands.has_permissions(administrator=True)
-async def dm(ctx,user_id=None,*,args=None):
+async def say(ctx,user_id=None,*,args=None):
 	if user_id != None and args != None:
 		try:
 			target=await client.fetch_user(user_id)
