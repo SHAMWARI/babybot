@@ -2,8 +2,6 @@ import discord
 from discord.ext import commands
 import os 
 from discord.utils import get
-import random
-import typing
 
 PREFIX='>'
 client = commands.Bot(command_prefix=PREFIX)
@@ -141,13 +139,6 @@ async def say(ctx,user_id=None,*,args=None):
 			await ctx.channel.send("Не удалось установить dm для данного пользователя.")
 	else:
 		await ctx.channel.send('Юзер айди')
-
-@commands.command(aliases=["em"])
-    async def embed(self, ctx, color: typing.Optional[discord.Color] = None, *, text):
-        em = discord.Embed(color=color or random.randint(0, 0xFFFFFF))
-        em.description = text
-        await ctx.send(embed=em)
-        await ctx.message.delete()
 
 @clear.error
 async def clear_error(ctx,error):
