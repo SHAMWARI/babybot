@@ -146,6 +146,7 @@ async def clear_error(ctx,error):
 		await ctx.send(f'{ctx.author.name}, У вас отсутствуют нужные права!')
 	if isinstance(error,commands.MissingRequiredArgument):
 		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
+
 @ban.error
 async def ban_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
