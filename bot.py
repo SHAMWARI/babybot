@@ -32,18 +32,18 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 	await ctx.channel.purge(limit=1)
 	await member.kick(reason=reason)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
-	emb.add_field(value='Кикнут участник:{}'.format(member.mention))
+	emb.add_field(name='Кикнут участник',value='Кикнут участник:{}'.format(member.mention))
 	await ctx.send(embed=emb)
 
 #ban
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
-	emb = discord.Embed(title='Бан',description='🤡', color=0xff0000)
+	emb = discord.Embed(title='Бан',description='🤡', color=0xeeff00)
 	await ctx.channel.purge(limit=1)
 	await member.ban(reason=reason)
 	emb.set_author(name=member.name, icon_url=member.avatar_url)
-	emb.add_field(value='Забанен участник:{}'.format(member.mention))
+	emb.add_field(name='Забанен участник', value='Забанен участник:{}'.format(member.mention))
 	await ctx.send(embed=emb)
 
 #unban
@@ -51,13 +51,13 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 @commands.has_permissions(administrator=True)
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
-	emb = discord.Embed(title='Разбан', description='👋', color=0xff0000)
+	emb = discord.Embed(title='Разбан', description='👋', color=0xeeff00)
 	banned_users = await ctx.guild.bans()
 	for ban_entry in banned_users:
 		user = ban_entry.user
 		await ctx.guild.unban(user)
 		emb.set_author(name=member.name, icon_url=member.avatar_url)
-		emb.add_field(value='Разбанен участник:{}'.format(member.mention))
+		emb.add_field(name='Разбанен участник',value='Разбанен участник:{}'.format(member.mention))
 		await ctx.send(embed=emb)
 		return
 
@@ -65,7 +65,7 @@ async def unban(ctx, *, member: discord.Member):
 @client.command(pass_context=True)
 async def help(ctx):
 	await ctx.channel.purge(limit=1)
-	emb=discord.Embed(title='Навигация по командам', color=0xff0000)
+	emb=discord.Embed(title='Навигация по командам', color=0xeeff00)
 	emb.add_field(name='{}clear'.format(PREFIX),value='Очистка чата',inline=False)
 	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
 	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
