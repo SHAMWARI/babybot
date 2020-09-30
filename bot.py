@@ -143,30 +143,30 @@ async def say(ctx,user_id=None,*,args=None):
 @clear.error
 async def clear_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.name}, У вас отсутствуют нужные права!')
+		await ctx.send(f'{ctx.author.mention}, У вас отсутствуют нужные права!')
 	if isinstance(error,commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
+		await ctx.send(f'{ctx.author.mention}, Пожалуйста, укажите аргумент!')
 
 @ban.error
 async def ban_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.name}, У вас отсутствуют нужные права!')
+		await ctx.send(f'{ctx.author.mention}, У вас отсутствуют нужные права!')
 	if isinstance(error,commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
+		await ctx.send(f'{ctx.author.mention}, Пожалуйста, укажите аргумент!')
 
 @kick.error
 async def kick_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.name}, У вас отсутствуют нужные права!')
+		await ctx.send(f'{ctx.author.mention}, У вас отсутствуют нужные права!')
 	if isinstance(error,commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
+		await ctx.send(f'{ctx.author.mention}, Пожалуйста, укажите аргумент!')
 
 @unban.error
 async def unban_error(ctx,error):
 	if isinstance(error,commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.name}, У вас отсутствуют нужные права!')
+		await ctx.send(f'{ctx.author.mention}, У вас отсутствуют нужные права!')
 	if isinstance(error,commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.name}, Пожалуйста, укажите аргумент!')
+		await ctx.send(f'{ctx.author.mention}, Пожалуйста, укажите аргумент!')
 
 #token
 token = os.environ.get('TOKENBOT')
