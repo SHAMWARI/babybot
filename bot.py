@@ -15,8 +15,7 @@ async def on_ready ():
 
 @client.command()
 async def load(ctx, extension):
-	if ctx.author.id == 
-	508315509398306827:
+	if ctx.author.id == 508315509398306827:
 		client.load_extension(f'cogs.{extension}')
 		await ctx.send("Загрузка...")
 	else: 
@@ -24,8 +23,7 @@ async def load(ctx, extension):
 
 @client.command()
 async def unload(ctx, extension):
-	if ctx.author.id == 
-	508315509398306827:
+	if ctx.author.id == 508315509398306827:
 		client.unload_extension(f"cogs.{extension}")
 		await ctx.send("Коги выгружены")
 	else:
@@ -33,8 +31,7 @@ async def unload(ctx, extension):
 
 @client.command()
 async def reload(ctx, extension):
-	if ctx.author.id == 
-	508315509398306827:
+	if ctx.author.id == 508315509398306827:
 		client.unload_extension(f"cogs.{extension}")
 		client.load_extension(f'cogs.{extension}')
 		await ctx.send("Перезагрузка...")
