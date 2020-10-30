@@ -119,5 +119,4 @@ async def unban_error(ctx, error):
 		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
 
 #token
-token =('NzQ1MjYzMDk4ODgwODUxOTY5.XzvOWQ.ZQsAkgYCo0nnFTEkbaHfisyQH2k')
-client.run(token)
+
