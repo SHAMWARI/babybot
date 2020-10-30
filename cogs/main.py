@@ -21,7 +21,6 @@ class User(commands.Cog):
 	@commands.command()
 	@commands.has_permissions(administrator = True)
 	async def say(ctx, user_id = None, *, args = None):
-		534792500112523264)
 		if user_id !=  None and args !=  None:
 			try:
 				target = await client.fetch_user(user_id)
