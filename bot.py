@@ -27,7 +27,7 @@ async def unload(ctx, extension):
 	if ctx.author.id == 
 	508315509398306827:
 		client.unload_extension(f"cogs.{extension}")
-		await ctx.send("Коги загружены")
+		await ctx.send("Коги выгружены")
 	else:
 		await ctx.send("Вы не разработчик бота")
 
@@ -37,7 +37,7 @@ async def reload(ctx, extension):
 	508315509398306827:
 		client.unload_extension(f"cogs.{extension}")
 		client.load_extension(f'cogs.{extension}')
-		await ctx.send("Загрузка...")
+		await ctx.send("Перезагрузка...")
 	else: 
 		await ctx.send("Вы не разработчик бота")
 
