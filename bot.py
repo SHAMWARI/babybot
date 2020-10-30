@@ -118,7 +118,6 @@ async def unban_error(ctx, error):
 	if isinstance(error, commands.MissingRequiredArgument):
 		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
 
-#token
-token = os.environ.get('TOKEN')
-client.run = (str(token))
+token = os.environ.get('TOKENBOT')
+client.run(str(token))
 
