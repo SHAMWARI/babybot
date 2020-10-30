@@ -33,7 +33,7 @@ async def unload(ctx, extension):
 async def reload(ctx, extension):
 	if ctx.author.id == 508315509398306827:
 		client.unload_extension(f"cogs.{extension}")
-		client.load_extension(f'cogs.{extension}')
+		client.load_extension(f"cogs.{extension}")
 		await ctx.send("Перезагрузка...")
 	else: 
 		await ctx.send("Вы не разработчик бота")
@@ -105,7 +105,7 @@ async def help (ctx):
 @client.command ()
 @commands.has_permissions (administrator = True)
 async def say (ctx, user_id = None, *, args = None):
-	if user_id ! =  None and args ! =  None:
+	if user_id !=  None and args !=  None:
 		try:
 			target = await client.fetch_user (user_id)
 			await target.send (args)
