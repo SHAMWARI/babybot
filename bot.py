@@ -3,7 +3,7 @@ from discord.ext import commands
 import os 
 from discord.utils import get
 
-PREFIX='>'
+PREFIX='/'
 client = commands.Bot(command_prefix=PREFIX)
 client.remove_command('help')
 
@@ -66,10 +66,10 @@ async def unban(ctx, *, member: discord.Member):
 async def help(ctx):
 	await ctx.channel.purge(limit=1)
 	emb=discord.Embed(title='Навигация по командам', color=0xeeff00)
-	emb.add_field(name='{}clear'.format(PREFIX),value='Очистка чата',inline=False)
-	emb.add_field(name='{}kick'.format(PREFIX), value='Кик участника',inline=False)
-	emb.add_field(name='{}ban'.format(PREFIX), value='Бан участника',inline=False)
-	emb.add_field(name='{}unban'.format(PREFIX), value='Разбан участника',inline=False)
+	emb.add_field(name='clear',value='Очистка чата',inline=False)
+	emb.add_field(name='kick', value='Кик участника',inline=False)
+	emb.add_field(name='ban', value='Бан участника',inline=False)
+	emb.add_field(name='unban', value='Разбан участника',inline=False)
 	await ctx.send(embed=emb)
 
 #send_message_member
