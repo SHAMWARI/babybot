@@ -1,28 +1,11 @@
 import discord
 from discord.ext import commands
-import asyncio
-import random
 
 class main(commands.Cog):
 
 	def __init__(self, client):
 		self.client = client
-
-    @commands.command()
-    async def embed(self, ctx, color: typing.Optional[discord.Color] = None, *, text):
-        em = discord.Embed(color=color or random.randint(0, 0xFFFFFF))
-        lines = text.rsplit("\n", maxsplit=1)
-        if len(lines) > 1:
-          if lines[1].startswith("https://"):
-            em.set_image(url=lines[1])
-            text = lines[0]
-        elif lines[0].startswith("https://"):
-          em.set_image(url=lines[0])
-          text = ""
-        em.title = text
-        await ctx.send(embed=em)
-        await ctx.message.delete()
-
+		
 #help
 	@commands.command()
 	async def help (self, ctx):
@@ -49,4 +32,4 @@ class main(commands.Cog):
 			await ctx.channel.send('Укажите сообщение')
 
 def setup(client):
-	client.add_cog(User(client))
+	client.add_cog(main(client))
