@@ -1,10 +1,32 @@
 import discord
 from discord.ext import commands
+import asyncio
+import random
 
-class User(commands.Cog):
+class main(commands.Cog):
 
 	def __init__(self, client):
 		self.client = client
+
+ @commands.command()
+    async def cathi(self, ctx, *, text: str = "Hi..."):
+        list = (
+            """ຸ 　　　＿＿_＿＿
+　　／　／　  ／|"
+　　|￣￣￣￣|　|
+　　|　　　　|／
+　　￣￣￣￣""",
+            f"""ຸ 　　　{text}
+ 　   　 ∧＿∧＿_
+　　／(´･ω･`)  ／＼
+　／|￣￣￣￣|＼／
+　　|　　　　|／
+　　￣￣￣￣""",
+        )
+        for i in range(3):
+            for cat in list:
+                await asyncio.sleep(1.5)
+                await ctx.message.edit(content=cat)
 
 #help
 	@commands.command()
