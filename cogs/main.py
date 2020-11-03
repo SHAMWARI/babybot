@@ -8,7 +8,7 @@ class main(commands.Cog):
 	def __init__(self, client):
 		self.client = client
 
-    @commands.command(aliases=["em"])
+    @commands.command()
     async def embed(self, ctx, color: typing.Optional[discord.Color] = None, *, text):
         em = discord.Embed(color=color or random.randint(0, 0xFFFFFF))
         lines = text.rsplit("\n", maxsplit=1)
