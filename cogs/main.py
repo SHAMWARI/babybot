@@ -8,25 +8,20 @@ class main(commands.Cog):
 	def __init__(self, client):
 		self.client = client
 
- @commands.command()
-    async def cathi(self, ctx, *, text: str = "Hi..."):
-        list = (
-            """ຸ 　　　＿＿_＿＿
-　　／　／　  ／|"
-　　|￣￣￣￣|　|
-　　|　　　　|／
-　　￣￣￣￣""",
-            f"""ຸ 　　　{text}
- 　   　 ∧＿∧＿_
-　　／(´･ω･`)  ／＼
-　／|￣￣￣￣|＼／
-　　|　　　　|／
-　　￣￣￣￣""",
-        )
-        for i in range(3):
-            for cat in list:
-                await asyncio.sleep(1.5)
-                await ctx.message.edit(content=cat)
+    @commands.command(aliases=["em"])
+    async def embed(self, ctx, color: typing.Optional[discord.Color] = None, *, text):
+        em = discord.Embed(color=color or random.randint(0, 0xFFFFFF))
+        lines = text.rsplit("\n", maxsplit=1)
+        if len(lines) > 1:
+          if lines[1].startswith("https://"):
+            em.set_image(url=lines[1])
+            text = lines[0]
+        elif lines[0].startswith("https://"):
+          em.set_image(url=lines[0])
+          text = ""
+        em.title = text
+        await ctx.send(embed=em)
+        await ctx.message.delete()
 
 #help
 	@commands.command()
