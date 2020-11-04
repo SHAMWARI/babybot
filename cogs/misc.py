@@ -29,6 +29,7 @@ class misc(commands.Cog):
           text = ""
         em.title = text
         await ctx.send(embed=em)
+        await ctx.message.delete()
 
 def setup(bot):
     bot.add_cog(misc(bot))
