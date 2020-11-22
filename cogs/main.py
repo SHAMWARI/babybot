@@ -18,9 +18,9 @@ class main(commands.Cog):
 		await ctx.send (embed = emb)
 
 #send_message_member
-	@commands.command(self, ctx):
+	@commands.command():
 	@commands.has_permissions(administrator = True)
-	async def say(ctx, user_id = None, *, args = None):
+	async def say(self, ctx, user_id = None, *, args = None):
 		if user_id !=  None and args !=  None:
 			try:
 				target = await client.fetch_user(user_id)
