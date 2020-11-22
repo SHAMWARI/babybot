@@ -31,29 +31,5 @@ class main(commands.Cog):
 		else:
 			await ctx.channel.send('Укажите сообщение')
 
-#logs joins and kicks my bot
-	@commands.event()
-	async def on_guild_join(self, guild):
-	  channel = client.get_channel(780153347051094026) 
-	  log = discord.Embed(color=discord.Color.green())
-	  log.title = "Добавлен на сервер"
-	  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
-	  log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
-	  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
-	  log.set_footer(text=f"ID: {guild.id}")
-	  await channel.send(embed=log)
-
-
-	@commands.event()
-	async def on_guild_remove(self, guild):
-	  channel = client.get_channel(780153347051094026) 
-	  log = discord.Embed(color=discord.Color.red())
-	  log.title = "Кикнут с сервера или сервер был удален"
-	  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
-	  log.add_field(name="Участников", value=f"> {guild.member_count}", inline=False)
-	  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
-	  log.set_footer(text=f"ID: {guild.id}")
-	  await channel.send(embed=log)
-
 def setup(client):
 	client.add_cog(main(client))
