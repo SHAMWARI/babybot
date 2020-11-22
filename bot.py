@@ -13,6 +13,30 @@ async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
 
+
+@client.event()
+	async def on_guild_join(guild):
+	  channel = client.get_channel(780153347051094026) 
+	  log = discord.Embed(color=discord.Color.green())
+	  log.title = "Добавлен на сервер"
+	  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
+	  log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
+	  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
+	  log.set_footer(text=f"ID: {guild.id}")
+	  await channel.send(embed=log)
+
+
+@client.event()
+async def on_guild_remove(guild):
+  channel = client.get_channel(780153347051094026) 
+  log = discord.Embed(color=discord.Color.red())
+  log.title = "Кикнут с сервера или сервер был удален"
+  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
+  log.add_field(name="Участников", value=f"> {guild.member_count}", inline=False)
+  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
+  log.set_footer(text=f"ID: {guild.id}")
+  await channel.send(embed=log)
+
 @client.command()
 async def load(ctx, extension):
 	if ctx.author.id == 508315509398306827:
