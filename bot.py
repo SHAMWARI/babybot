@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
 
 #online bot
-@client.event
+@client.event()
 async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
