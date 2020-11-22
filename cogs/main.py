@@ -32,7 +32,7 @@ class main(commands.Cog):
 			await ctx.channel.send('Укажите сообщение')
 
 #logs joins and kicks my bot
-	@comands.event
+	@commands.event
 	async def on_guild_join(self, guild):
 	  channel = client.get_channel(780153347051094026) 
 	  log = discord.Embed(color=discord.Color.green())
