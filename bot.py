@@ -8,25 +8,23 @@ client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
 
 #online bot
-@client.event()
+@client.event
 async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
 
+@client.event
+async def on_guild_join(guild):
+  channel = client.get_channel(780153347051094026) 
+  log = discord.Embed(color=discord.Color.green())
+  log.title = "Добавлен на сервер"
+  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
+  log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
+  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
+  log.set_footer(text=f"ID: {guild.id}")
+  await channel.send(embed=log)
 
-@client.event()
-	async def on_guild_join(guild):
-	  channel = client.get_channel(780153347051094026) 
-	  log = discord.Embed(color=discord.Color.green())
-	  log.title = "Добавлен на сервер"
-	  log.add_field(name="Название", value=f"> {guild.name}", inline=False)
-	  log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
-	  log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
-	  log.set_footer(text=f"ID: {guild.id}")
-	  await channel.send(embed=log)
-
-
-@client.event()
+@client.event
 async def on_guild_remove(guild):
   channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.red())
@@ -36,6 +34,20 @@ async def on_guild_remove(guild):
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
   log.set_footer(text=f"ID: {guild.id}")
   await channel.send(embed=log)
+
+#send_message_member
+@client.command()
+@commands.has_permissions(administrator = True)
+async def say(ctx, user_id = None, *, args = None):
+	if user_id !=  None and args !=  None:
+		try:
+			target = await client.fetch_user(user_id)
+			await target.send(args)
+			await ctx.channel.send("'" + args + "' Сообщение было отправлено: " + target.name)
+		except:
+			await ctx.channel.send("Не удалось отправить сообщение для данного пользователя.")
+	else:
+		await ctx.channel.send('Укажите сообщение')
 
 @client.command()
 async def load(ctx, extension):
