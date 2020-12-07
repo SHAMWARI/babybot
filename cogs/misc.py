@@ -27,7 +27,7 @@ class misc(commands.Cog):
         elif lines[0].startswith("https://"):
           em.set_image(url=lines[0])
           text = ""
-        em.title = text
+        em.description = text
         await ctx.send(embed=em)
         await ctx.message.delete()
 
