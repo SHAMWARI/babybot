@@ -94,7 +94,7 @@ async def clear(ctx, amount: int):
 #kick
 @client.command()
 async def kick(ctx, member: discord.Member,  *,  reason = None):
-	emb = discord.Embed(title='🤡', description='Забанен участник:' + member.mention,  color=0xff0000)
+	emb = discord.Embed(title='🤡', description='Кикнут участник:' +  member.mention,  color=0xff0000)
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
@@ -104,7 +104,8 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 @client.command()
 async def ban(ctx, member: discord.Member,  *,  reason = None):
 	await ctx.channel.purge(limit=1)
-	emb = discord.Embed(title = '🤡',  color = 0xeeff00)
+	emb = discord.Embed(
+		title='🤡', description='Забанен участник:' + member.mention,  color=0xeeff00)
 	await member.ban(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
 	await ctx.send(embed = emb)
@@ -113,7 +114,8 @@ async def ban(ctx, member: discord.Member,  *,  reason = None):
 @client.command()
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit = 1)
-	emb =  discord.Embed(title = '👋',  color = 0xeeff00)
+	emb = discord.Embed(
+		title='👋', description='Разбанен участник:' + member.mention,  color=0xeeff00)
 	banned_users =  await ctx.guild.bans()
 	for ban_entry in banned_users:
 		user =  ban_entry.user
