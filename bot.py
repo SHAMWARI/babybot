@@ -87,22 +87,9 @@ async def on_command_error(ctx, error):
 	pass
 
 #clear chat
-@slash.command()
+@client.command()
 async def clear(ctx, amount: int):
-	await ctx.channel.purge(limit=amount)
-	await slash.register_guild_slash_command(test_guild_id, sc)
-		sc = SlashCommand(
-        name="random",
-        description="Returns a random number from the given range",
-        options=[
-            Option(
-                name="Число",
-                description="Задайте число сообщений которое вам нужно очистить",
-                required=True,
-                type=Type.INTEGER
-            ),
-        ]
-		)
+	await ctx.channel.purge(limit = amount)
 
 #kick
 @client.command()
