@@ -1,4 +1,5 @@
 import discord
+import pylint
 from discord.ext import commands
 from discord.utils import get
 from dislash.interactions import *
@@ -87,11 +88,14 @@ for filename in os.listdir("./cogs"):
 async def on_command_error(ctx, error):
 	pass
 
-#clear chat
-@client.command()
-@commands.has_permissions(administrator = True)
+
+@slash.command(
+    guild_ids=test_guilds,
+    description="Очищает сообщения задавая вторым аргументом число"
+)
+@commands.has_permissions(administrator=True)
 async def clear(ctx, amount: int):
-	await ctx.channel.purge(limit = amount)
+	await ctx.channel.purge(limit=amount)
 
 #kick
 @client.command()
@@ -129,13 +133,6 @@ async def unban(ctx, *, member: discord.Member):
 		emb.add_field(name = 'Разбанен участник', value = 'Разбанен участник:{}'.format(member.mention))
 		await ctx.send(embed = emb)
 		return
-
-@slash.command(
-    guild_ids=test_guilds,   # Delete this param if you want to register globally
-    description="Says Hello"
-)
-async def hello(ctx):
-    await ctx.send("Hello!")
 
 @clear.error
 async def clear_error(ctx, error):
