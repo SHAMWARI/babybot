@@ -40,7 +40,22 @@ async def on_guild_remove(guild):
   await channel.send(embed=log)
 
 #send_message_member
-@client.command()
+@slash.command()
+sc = SlashCommand(
+    name="Смс рассылка",
+    description="Бот рассылка сообщения пользователю в лс",
+    options=[
+        Option(
+            name="user",
+            description="Renames a user",
+            type=Type.SUB_COMMAND,
+            options=[
+                Option("Айди", "Айди юзера для рассылки",
+                       Type.USER, required=True),
+                # required=True means it's not an optional arg
+                Option("Сообщение", "Сообщение для рассылки", Type.STRING, True)
+            ]
+        )
 async def say(ctx, user_id = None, *, args = None):
 	if user_id !=  None and args !=  None:
 		try:
