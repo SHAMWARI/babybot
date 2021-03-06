@@ -1,5 +1,4 @@
 import discord
-import pylint
 from discord.ext import commands
 from discord.utils import get
 from dislash.interactions import *
