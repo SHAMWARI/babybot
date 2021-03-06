@@ -88,12 +88,10 @@ for filename in os.listdir("./cogs"):
 async def on_command_error(ctx, error):
 	pass
 
-
 @slash.command(
     guild_ids=test_guilds,
     description="Очищает сообщения задавая вторым аргументом число"
 )
-@commands.has_permissions(administrator=True)
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
 
