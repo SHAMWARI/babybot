@@ -93,7 +93,6 @@ async def clear(ctx, amount: int):
 
 #kick
 @client.command()
-@commands.has_permissions(administrator = True)
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xff0000)
 	await ctx.channel.purge(limit = 1)
@@ -104,7 +103,6 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 
 #ban
 @client.command()
-@commands.has_permissions(administrator = True)
 async def ban(ctx,  member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xeeff00)
 	await ctx.channel.purge(limit = 1)
@@ -115,7 +113,6 @@ async def ban(ctx,  member: discord.Member,  *,  reason = None):
 
 #unban
 @client.command()
-@commands.has_permissions(administrator = True)
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit = 1)
 	emb =  discord.Embed(title = '👋',  color = 0xeeff00)
