@@ -1,12 +1,13 @@
 import discord
 from discord.ext import commands
+from discord.utils import get
 from dislash import slash_commands
 from dislash.interactions import *
-from discord.utils import get
 import os 
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
+slash = slash_commands.SlashClient(client)
 client.remove_command('help')
 
 #online bot
@@ -96,24 +97,6 @@ async def clear(ctx, amount: int):
 @commands.has_permissions(administrator = True)
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xff0000)
-	sc = SlashCommand(
-        name="random",
-        description="Returns a random number from the given range",
-        options=[
-            Option(
-                name="start",
-                description="Enter a number",
-                required=True,
-                type=Type.INTEGER
-            ),
-            Option(
-                name="end",
-                description="Enter a number",
-                required=True,
-                type=Type.INTEGER
-            )
-        ]
-    )
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
@@ -145,6 +128,16 @@ async def unban(ctx, *, member: discord.Member):
 		emb.add_field(name = 'Разбанен участник', value = 'Разбанен участник:{}'.format(member.mention))
 		await ctx.send(embed = emb)
 		return
+
+
+@slash.command(
+    name="hello",  # Defaults to function name
+    description="Says hello",
+    guild_ids=699964701098115123
+)
+async def hello(inter):
+    await inter.reply("Hello!")
+
 
 @clear.error
 async def clear_error(ctx, error):
