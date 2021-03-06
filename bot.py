@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
-import os 
+from dislash import slash_commands
+from dislash.interactions import *
 from discord.utils import get
+import os 
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
@@ -94,6 +96,20 @@ async def clear(ctx, amount: int):
 @commands.has_permissions(administrator = True)
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xff0000)
+	options = [
+            Option(
+                name="start",
+                description="Enter a number",
+                required=True,
+                type=Type.INTEGER
+            ),
+            Option(
+                name="end",
+                description="Enter a number",
+                required=True,
+                type=Type.INTEGER
+            )
+        ]
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
