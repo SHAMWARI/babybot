@@ -2,15 +2,11 @@ import discord
 import pylint
 from discord.ext import commands
 from discord.utils import get
-from dislash.interactions import *
-from dislash.slash_commands import SlashClient
 import os 
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
-slash = SlashClient(client)
-test_guilds = [699964701098115123]
 
 #online bot
 @client.event
