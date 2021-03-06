@@ -16,7 +16,6 @@ class misc(commands.Cog):
         self.emoji_list = []
 
     @commands.command(aliases=["em"])
-    @commands.has_permissions(administrator = True)
     async def embed(self, ctx, color: typing.Optional[discord.Color] = None, *, text):
         em = discord.Embed(color=color or random.randint(0, 0xFFFFFF))
         lines = text.rsplit("\n", maxsplit=1)
