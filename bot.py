@@ -21,7 +21,7 @@ async def on_ready():
 async def on_guild_join(guild):
   channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.green())
-  log.title = "Добавлен на сервер"
+  await.ctx.send = "Добавлен на сервер"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
   log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
@@ -32,7 +32,7 @@ async def on_guild_join(guild):
 async def on_guild_remove(guild):
   channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.red())
-  log.title = "Кикнут с сервера или сервер был удален"
+  await.ctx.send = "Кикнут с сервера или сервер был удален"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
   log.add_field(name="Участников", value=f"> {guild.member_count}", inline=False)
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
