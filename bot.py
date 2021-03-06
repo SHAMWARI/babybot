@@ -98,7 +98,6 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	emb.description(name='Кикнут участник:' + member.mention)
 	await ctx.send(embed = emb)
 
 #ban
