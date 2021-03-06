@@ -18,10 +18,10 @@ async def on_ready():
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
 
 @client.event
-async def on_guild_join(ctx, guild):
-  channel = client.get_channel(723587921797709835)
+async def on_guild_join(guild):
+  channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.green())
-  await.ctx.send = "Добавлен на сервер"
+  log.title = "Добавлен на сервер"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
   log.add_field(name="Участников", value=f"> {guild.member_count - 1}", inline=False)
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
@@ -29,10 +29,10 @@ async def on_guild_join(ctx, guild):
   await channel.send(embed=log)
 
 @client.event
-async def on_guild_remove(ctx, guild):
-  channel = client.get_channel(723587921797709835)
+async def on_guild_remove(guild):
+  channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.red())
-  await.ctx.send = "Кикнут с сервера или сервер был удален"
+  log.title = "Кикнут с сервера или сервер был удален"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
   log.add_field(name="Участников", value=f"> {guild.member_count}", inline=False)
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
@@ -98,7 +98,7 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	emb.description(name='Кикнут участник:' + member.mention, value=None)
+	emb.description(name='Кикнут участник:' + member.mention, value = None)
 	await ctx.send(embed = emb)
 
 #ban
