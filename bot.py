@@ -88,8 +88,6 @@ for filename in os.listdir("./cogs"):
 async def on_command_error(ctx, error):
 	pass
 
-
-
 #clear chat
 @client.command()
 @commands.has_permissions(administrator = True)
@@ -100,9 +98,9 @@ async def clear(ctx, amount: int):
 	guild_ids=test_guilds,   
     description="Says Hello"
 )
-async def clear(ctx, amount: int):
+async def clear1(ctx, amount: int):
 	await ctx.channel.purge(limit = amount)
-	
+
 #kick
 @client.command()
 @commands.has_permissions(administrator = True)
