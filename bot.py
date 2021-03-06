@@ -98,7 +98,7 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 	await ctx.channel.purge(limit = 1)
 	await member.kick(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	emb.add_field(name='Кикнут:{}'.format(member.mention))
+	emb.add_field(name='Кикнут участник:' + member.mention)
 	await ctx.send(embed = emb)
 
 #ban
@@ -108,7 +108,7 @@ async def ban(ctx,  member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xeeff00)
 	await member.ban(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	emb.add_field(name='Забанен участник:{}'.format(member.mention))
+	emb.add_field(name='Забанен участник:' + member.mention)
 	await ctx.send(embed = emb)
 
 #unban
@@ -121,7 +121,7 @@ async def unban(ctx, *, member: discord.Member):
 		user =  ban_entry.user
 		await ctx.guild.unban(user)
 		emb.set_author(name = member.name,  icon_url = member.avatar_url)
-		emb.add_field(name='Разбанен участник:{}'.format(member.mention))
+		emb.add_field(name='Разбанен участник:' + member.mention)
 		await ctx.send(embed = emb)
 		return
 
