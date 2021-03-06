@@ -41,7 +41,6 @@ async def on_guild_remove(guild):
 
 #send_message_member
 @client.command()
-@commands.has_permissions(administrator = True)
 async def say(ctx, user_id = None, *, args = None):
 	if user_id !=  None and args !=  None:
 		try:
@@ -88,10 +87,22 @@ async def on_command_error(ctx, error):
 	pass
 
 #clear chat
-@client.command()
-@commands.has_permissions(administrator = True)
+@slash.command()
 async def clear(ctx, amount: int):
-	await ctx.channel.purge(limit = amount)
+	await ctx.channel.purge(limit=amount)
+	await slash.register_guild_slash_command(test_guild_id, sc)
+		sc = SlashCommand(
+        name="random",
+        description="Returns a random number from the given range",
+        options=[
+            Option(
+                name="Число",
+                description="Задайте число сообщений которое вам нужно очистить",
+                required=True,
+                type=Type.INTEGER
+            ),
+        ]
+		)
 
 #kick
 @client.command()
