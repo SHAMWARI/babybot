@@ -94,13 +94,6 @@ async def on_command_error(ctx, error):
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit = amount)
 
-@slash.command(
-	guild_ids=test_guilds,   
-    description="Says Hello"
-)
-async def clear1(ctx, amount: int):
-	await ctx.channel.purge(limit = amount)
-
 #kick
 @client.command()
 @commands.has_permissions(administrator = True)
