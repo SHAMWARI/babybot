@@ -18,7 +18,7 @@ async def on_ready():
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
 
 @client.event
-async def on_guild_join(guild):
+async def on_guild_join(ctx, guild):
   channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.green())
   await.ctx.send = "Добавлен на сервер"
@@ -29,7 +29,7 @@ async def on_guild_join(guild):
   await channel.send(embed=log)
 
 @client.event
-async def on_guild_remove(guild):
+async def on_guild_remove(ctx, guild):
   channel = client.get_channel(780153347051094026) 
   log = discord.Embed(color=discord.Color.red())
   await.ctx.send = "Кикнут с сервера или сервер был удален"
