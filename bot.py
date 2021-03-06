@@ -105,10 +105,9 @@ async def kick(ctx, member: discord.Member,  *,  reason = None):
 @client.command()
 async def ban(ctx, member: discord.Member,  *,  reason = None):
 	await ctx.channel.purge(limit=1)
-	emb =  discord.Embed(title = '🤡',  color = 0xeeff00)
+	emb = discord.Embed(title = '🤡', description = 'Забанен участник:' + member.mention,  color = 0xeeff00)
 	await member.ban(reason = reason)
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	emb.description = 'Забанен участник:' + member.mention
 	await ctx.send(embed = emb)
 
 #unban
