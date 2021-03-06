@@ -96,7 +96,7 @@ async def clear(ctx, amount: int):
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb =  discord.Embed(title = '🤡',  color = 0xff0000)
 	await ctx.channel.purge(limit = 1)
-	await member.kick(reason = reason)
+	
 	emb.set_author(name = member.name,  icon_url = member.avatar_url)
 	emb.description(name='Кикнут участник:' + member.mention, value=None)
 	await ctx.send(embed = emb)
