@@ -86,9 +86,18 @@ async def say(ctx, user_id = None, *, args = None):
 		await ctx.channel.send('Укажите сообщение')
 
 #clear chat
-@client.command()
+@slash.command(
+    guild_ids=test_guilds,
+   	name="clear",
+    description="Очищает чат",
+   	type=Type.SUB_COMMAND,
+    options=[
+        Option('Число', 'Задайте численный аргумент для очистки чата, максимум - 100',
+               Type.USER, required=True),
+    ]
+)
 async def clear(ctx, amount: int):
-	await ctx.channel.purge(limit=amount)
+	await ctx.channel.purge(limit=100)
 
 #ping everyone
 @client.command()
