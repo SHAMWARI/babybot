@@ -40,6 +40,38 @@ async def on_guild_remove(guild):
   log.set_footer(text=f"ID: {guild.id}")
   await channel.send(embed=log)
 
+
+@client.command()
+async def load(ctx, extension):
+	if ctx.author.id == 508315509398306827:
+		client.load_extension(f'cogs.{extension}')
+		await ctx.send("Загрузка...")
+	else:
+		await ctx.send("Вы не разработчик бота")
+
+
+@client.command()
+async def unload(ctx, extension):
+	if ctx.author.id == 508315509398306827:
+		client.unload_extension(f"cogs.{extension}")
+		await ctx.send("Коги выгружены")
+	else:
+		await ctx.send("Вы не разработчик бота")
+
+
+@client.command()
+async def reload(ctx, extension):
+	if ctx.author.id == 508315509398306827:
+		client.unload_extension(f"cogs.{extension}")
+		client.load_extension(f"cogs.{extension}")
+		await ctx.send("Перезагрузка...")
+	else:
+		await ctx.send("Вы не разработчик бота")
+
+for filename in os.listdir("./cogs"):
+	if filename.endswith(".py"):
+		client.load_extension(f"cogs.{filename[:-3]}")
+
 #send_message_member
 @client.command()
 async def say(ctx, user_id = None, *, args = None):
@@ -53,35 +85,6 @@ async def say(ctx, user_id = None, *, args = None):
 	else:
 		await ctx.channel.send('Укажите сообщение')
 
-@client.command()
-async def load(ctx, extension):
-	if ctx.author.id == 508315509398306827:
-		client.load_extension(f'cogs.{extension}')
-		await ctx.send("Загрузка...")
-	else: 
-		await ctx.send("Вы не разработчик бота")
-
-@client.command()
-async def unload(ctx, extension):
-	if ctx.author.id == 508315509398306827:
-		client.unload_extension(f"cogs.{extension}")
-		await ctx.send("Коги выгружены")
-	else:
-		await ctx.send("Вы не разработчик бота")
-
-@client.command()
-async def reload(ctx, extension):
-	if ctx.author.id == 508315509398306827:
-		client.unload_extension(f"cogs.{extension}")
-		client.load_extension(f"cogs.{extension}")
-		await ctx.send("Перезагрузка...")
-	else: 
-		await ctx.send("Вы не разработчик бота")
-
-for filename in os.listdir("./cogs"):
-	if filename.endswith(".py"):
-		client.load_extension(f"cogs.{filename[:-3]}")
-
 #clear chat
 @slash.command(
     guild_ids=test_guilds,
@@ -92,6 +95,11 @@ for filename in os.listdir("./cogs"):
 )
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
+
+#ping everyone
+@client.command()
+async def ping(ctx)
+	await ctx.channel.send('@everyone, здарова ебать!')
 
 #kick
 @slash.command(
