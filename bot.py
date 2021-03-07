@@ -47,7 +47,7 @@ async def say(ctx, user_id = None, *, args = None):
 		try:
 			target = await client.fetch_user(user_id)
 			await target.send(args)
-			await ctx.channel.send("`'" + args + "'` Сообщение было отправлено: " + target.mention)
+			await ctx.channel.send("`" + args + "` Сообщение было отправлено: " + target.mention)
 		except:
 			await ctx.channel.send("Не удалось отправить сообщение для данного пользователя.")
 	else:
@@ -87,7 +87,7 @@ for filename in os.listdir("./cogs"):
     guild_ids=test_guilds,
     description="Очищает сообщение чата",
     options=[
-        Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.USER),
+        Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.STRING),
     ]
 )
 async def clear(ctx, amount: int):
