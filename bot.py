@@ -128,12 +128,6 @@ async def unban(ctx, *, member: discord.Member):
 #--------------------------+
 
 @client.event
-async def on_ready():
-	print('bot connected')
-	await client.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
-
-
-@client.event
 async def on_guild_join(guild):
   channel = client.get_channel(780153347051094026)
   log = discord.Embed(color=discord.Color.green())
@@ -144,7 +138,6 @@ async def on_guild_join(guild):
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
   log.set_footer(text=f"ID: {guild.id}")
   await channel.send(embed=log)
-
 
 @client.event
 async def on_guild_remove(guild):
@@ -157,6 +150,12 @@ async def on_guild_remove(guild):
   log.add_field(name="Глава", value=f"> {guild.owner}", inline=False)
   log.set_footer(text=f"ID: {guild.id}")
   await channel.send(embed=log)
+
+async def _on_ready():
+	print('bot connected')
+	client.add_listener(_on_ready, 'on_ready')
+	await client.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
+
 
 @slash.event
 async def on_ready():
