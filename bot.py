@@ -2,14 +2,11 @@ import discord
 import dislash
 from discord.ext import commands
 from discord.utils import get
-from dislash.interactions import *
-from dislash.slash_commands import SlashClient
 import os 
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
-slash = SlashClient(client)
 test_guilds = [699964701098115123]
 
 #online bot
@@ -86,12 +83,9 @@ async def say(ctx, user_id = None, *, args = None):
 		await ctx.channel.send('Укажите сообщение')
 
 #clear chat
-@slash.command(
-    name="Ну шо чистка по расписанию",  # Defaults to function name
-    description="Ну, дворщиком тож не плохо",
-    guild_ids=test_guilds  # If not specified, the command is registered globally
-    # Global registration takes up to 1 hour
-)
+
+
+@client.command()
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=100)
 
@@ -103,12 +97,9 @@ async def ping(ctx):
 	await ctx.channel.send('@everyone, здарова ебать!')
 
 #kick
-@slash.command(
-    name="Пашол нахуй сука", # Defaults to function name
-    description="Репан по ебалу",
-    guild_ids=test_guilds # If not specified, the command is registered globally
-    # Global registration takes up to 1 hour
-)
+
+
+@client.command()
 async def kick(ctx, member: discord.Member,  *,  reason=None):
 	emb = discord.Embed(
             title='🤡', description='Кикнут участник: ' + member.mention,
@@ -119,11 +110,9 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #ban
-@slash.command(
-    name="Бан чучело",  # Defaults to function name
-    description="Кукумбит чучело в радиусе всего сервера",
-    guild_ids=test_guilds 
-)
+
+
+@client.command()
 async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
@@ -134,11 +123,9 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #unban
-@slash.command(
-    name="Стой десять год тюрьмы",  # Defaults to function name
-    description="Ой, чучело сбежало",
-    guild_ids=test_guilds  
-)
+
+
+@client.command()
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
