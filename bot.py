@@ -56,7 +56,7 @@ async def say(ctx, user_id = None, *, args = None):
 
 #clear chat
 @slash.command(
-    name="Ну шо чистка по расписанию",
+    name="clear",
     description="Ну, дворщиком тож не плохо",
     guild_ids=test_guilds
 )
@@ -73,7 +73,7 @@ async def ping(ctx):
 
 #kick
 @slash.command(
-    name="Пашол нахуй сука", 
+    name="kick", 
     description="Репан по ебалу",
     guild_ids=test_guilds 
 )
@@ -88,7 +88,7 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
 
 #ban
 @slash.command(
-    name="Бан чучело",
+    name="ban",
     description="Кукумбит чучело в радиусе всего сервера",
     guild_ids=test_guilds 
 )
@@ -103,7 +103,7 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
 
 #unban
 @slash.command(
-    name="Стой десять год тюрьмы",
+    name="unban",
     description="Ой, чучело сбежало",
     guild_ids=test_guilds  
 )
