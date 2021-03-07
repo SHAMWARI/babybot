@@ -2,8 +2,7 @@ import discord
 import dislash
 from discord.ext import commands
 from discord.utils import get
-from dislash.interactions import *
-from dislash.slash_commands import SlashClient
+
 import os 
 
 PREFIX = '/'
