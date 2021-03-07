@@ -166,4 +166,3 @@ async def on_ready():
 
 token = os.environ.get('TOKENBOT')
 client.run(str(token))
-
