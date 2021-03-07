@@ -111,7 +111,6 @@ async def on_guild_remove(guild):
 @client.event
 async def _on_ready():
 	print('bot connected')
-	client.add_listener(_on_ready, 'on_ready')
 	await client.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
 #--------------------------+
 
