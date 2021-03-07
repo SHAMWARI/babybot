@@ -82,87 +82,73 @@ for filename in os.listdir("./cogs"):
 	if filename.endswith(".py"):
 		client.load_extension(f"cogs.{filename[:-3]}")
 
-#error argument
-@client.event
-async def on_command_error(ctx, error):
-	pass
-
 #clear chat
-@client.command()
+@slash.command(
+    guild_ids=test_guilds,
+    description="Очищает сообщение чата",
+    options=[
+        Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.USER),
+    ]
+)
 async def clear(ctx, amount: int):
-	await ctx.channel.purge(limit = amount)
+	await ctx.channel.purge(limit=amount)
 
 #kick
 @slash.command(
-guild_ids = test_guilds,
-description = "Кикает участника",
-options = [
-        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.STRING),
-	]
+    guild_ids=test_guilds,
+    description="Кикает участника",
+    options=[
+        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.USER),
+    ]
 )
-async def kick(ctx, member: discord.Member,  *,  reason = None):
+async def kick(ctx, member: discord.Member,  *,  reason=None):
 	emb = discord.Embed(
-		title='🤡', description='Кикнут участник: ' + member.mention,
-			color=0xff0000)
-	await ctx.channel.purge(limit = 1)
-	await member.kick(reason = reason)
-	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	await ctx.send(embed = emb)
+            title='🤡', description='Кикнут участник: ' + member.mention,
+            color=0xff0000)
+	await ctx.channel.purge(limit=1)
+	await member.kick(reason=reason)
+	emb.set_author(name=member.name,  icon_url=member.avatar_url)
+	await ctx.send(embed=emb)
 
 #ban
-@client.command()
-async def ban(ctx, member: discord.Member,  *,  reason = None):
+@slash.command(
+    guild_ids=test_guilds,
+    description="Банит участника",
+    options=[
+        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.USER),
+    ]
+)
+async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
-		title='🤡', description='Забанен участник: ' + member.mention, 
-			color=0xeeff00)
-	await member.ban(reason = reason)
-	emb.set_author(name = member.name,  icon_url = member.avatar_url)
-	await ctx.send(embed = emb)
+            title='🤡', description='Забанен участник: ' + member.mention,
+            color=0xeeff00)
+	await member.ban(reason=reason)
+	emb.set_author(name=member.name,  icon_url=member.avatar_url)
+	await ctx.send(embed=emb)
 
 #unban
-@client.command()
+@slash.command(
+    guild_ids=test_guilds,
+    description="Разбанивает",
+    options=[
+        Option(
+            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER),
+    ]
+)
 async def unban(ctx, *, member: discord.Member):
-	await ctx.channel.purge(limit = 1)
+	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
-		title='👋', description='Разбанен участник: ' + member.mention,  
-			color=0xeeff00)
-	banned_users =  await ctx.guild.bans()
+            title='👋', description='Разбанен участник: ' + member.mention,
+            color=0xeeff00)
+	banned_users = await ctx.guild.bans()
 	for ban_entry in banned_users:
-		user =  ban_entry.user
+		user = ban_entry.user
 		await ctx.guild.unban(user)
-		emb.set_author(name = member.name,  icon_url = member.avatar_url)
+		emb.set_author(name=member.name,  icon_url=member.avatar_url)
 		emb.description(name='Разбанен участник:' + member.mention)
-		await ctx.send(embed = emb)
+		await ctx.send(embed=emb)
 		return
-
-@clear.error
-async def clear_error(ctx, error):
-	if isinstance(error, commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.mention},  У вас отсутствуют нужные права!')
-	if isinstance(error, commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
-
-@ban.error
-async def ban_error(ctx, error):
-	if isinstance(error, commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.mention},  У вас отсутствуют нужные права!')
-	if isinstance(error, commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
-
-@kick.error
-async def kick_error(ctx, error):
-	if isinstance(error, commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.mention},  У вас отсутствуют нужные права!')
-	if isinstance(error, commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
-
-@unban.error
-async def unban_error(ctx, error):
-	if isinstance(error, commands.MissingPermissions):
-		await ctx.send(f'{ctx.author.mention},  У вас отсутствуют нужные права!')
-	if isinstance(error, commands.MissingRequiredArgument):
-		await ctx.send(f'{ctx.author.mention},  Пожалуйста,  укажите аргумент!')
 
 token = os.environ.get('TOKENBOT')
 client.run(str(token))
