@@ -98,7 +98,7 @@ async def clear(ctx, amount: int):
 
 #ping everyone
 @client.command()
-async def ping(ctx)
+async def ping(ctx):
 	await ctx.channel.send('@everyone, здарова ебать!')
 
 #kick
