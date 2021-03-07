@@ -98,7 +98,7 @@ guild_ids = test_guilds,
 description = "Кикает участника",
 options = [
         Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.STRING),
-]
+	]
 )
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb = discord.Embed(
