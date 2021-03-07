@@ -109,7 +109,7 @@ async def on_guild_remove(guild):
   await channel.send(embed=log)
 
 @client.event
-async def _on_ready():
+async def on_ready():
 	print('bot connected')
 	await client.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
 #--------------------------+
