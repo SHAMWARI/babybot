@@ -13,11 +13,10 @@ slash = SlashClient(client)
 test_guilds = [699964701098115123]
 
 #online bot
-@slash.event
+@client.event
 async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
-	await slash_client.register_guild_slash_command(guild_id, sc)
 
 @client.event
 async def on_guild_join(guild):
@@ -87,19 +86,14 @@ async def say(ctx, user_id = None, *, args = None):
 		await ctx.channel.send('Укажите сообщение')
 
 #clear chat
-@slash.command(
-    guild_ids=test_guilds,
-    description="Очищает сообщение чата",
-    options=[
-        Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.STRING),
-    ]
-)
+@client.command()
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
 
 #ping everyone
 @client.command()
 async def ping(ctx):
+	ctx.author.id == 508315509398306827:
 	await ctx.channel.purge(limit=1)
 	await ctx.channel.send('@everyone, здарова ебать!')
 
