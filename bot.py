@@ -47,7 +47,7 @@ async def say(ctx, user_id = None, *, args = None):
 		try:
 			target = await client.fetch_user(user_id)
 			await target.send(args)
-			await ctx.channel.send("'" + args + "' Сообщение было отправлено: " + target.mention)
+			await ctx.channel.send("`'" + args + "'` Сообщение было отправлено: " + target.mention)
 		except:
 			await ctx.channel.send("Не удалось отправить сообщение для данного пользователя.")
 	else:
