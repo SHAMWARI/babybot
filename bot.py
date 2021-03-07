@@ -1,8 +1,5 @@
-import discord
-import os
+import discord, os
 from discord.ext import commands
-from dislash import slash_commands
-from dislash.interactions import *
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
