@@ -92,7 +92,7 @@ async def say(ctx, user_id = None, *, args = None):
     description="Очищает чат",
     options=[
         Option('Число', 'Задайте численный аргумент для очистки чата, максимум - 100',
-               Type.STRING),
+               Type.STRING)
     ]
 )
 async def clear(ctx, amount: int):
