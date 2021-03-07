@@ -93,7 +93,7 @@ async def clear(ctx, amount: int):
 #ping everyone
 @client.command()
 async def ping(ctx):
-	ctx.author.id == 508315509398306827:
+	ctx.author.id == 508315509398306827
 	await ctx.channel.purge(limit=1)
 	await ctx.channel.send('@everyone, здарова ебать!')
 
