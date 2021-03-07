@@ -90,7 +90,6 @@ async def say(ctx, user_id = None, *, args = None):
     guild_ids=test_guilds,
    	name="clear",
     description="Очищает чат",
-   	type=Type.SUB_COMMAND,
     options=[
         Option('Число', 'Задайте численный аргумент для очистки чата, максимум - 100',
                Type.STRING),
@@ -111,10 +110,9 @@ async def ping(ctx):
     guild_ids=test_guilds,
 	name="kick",
     description="Кикает участника",
-   	type=Type.SUB_COMMAND,
     options=[
         Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
-               Type.USER, required=True),
+               Type.USER)
     ]
 )
 async def kick(ctx, member: discord.Member,  *,  reason=None):
@@ -131,10 +129,9 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
     guild_ids=test_guilds,
    	name="ban",
     description="Банит участника",
-   	type=Type.SUB_COMMAND,
     options=[
         Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
-               Type.USER, required=True),
+               Type.USER)
     ]
 )
 async def ban(ctx, member: discord.Member,  *,  reason=None):
@@ -151,10 +148,9 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
     guild_ids=test_guilds,
    	name="unban",
     description="Разбанивает",
-   	type=Type.SUB_COMMAND,
     options=[
         Option(
-            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER, required=True),
+            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER)
     ]
 )
 async def unban(ctx, *, member: discord.Member):
