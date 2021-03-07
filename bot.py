@@ -41,7 +41,7 @@ async def on_guild_remove(guild):
   await channel.send(embed=log)
 
 #send_message_member
-@slash.command()
+@client.command()
 async def say(ctx, user_id = None, *, args = None):
 	if user_id !=  None and args !=  None:
 		try:
