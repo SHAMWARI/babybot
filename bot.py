@@ -1,12 +1,14 @@
 import discord
 import os
 from discord.ext import commands
-
+from dislash import slash_commands
+from dislash.interactions import *
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
-
+slash = slash_commands.SlashClient(client)
+test_guilds = [699964701098115123]
 
 @client.command()
 async def load(ctx, extension):
@@ -15,6 +17,29 @@ async def load(ctx, extension):
 		await ctx.send("Загрузка...")
 	else:
 		await ctx.send("Вы не разработчик бота")
+
+
+@client.command()
+async def unload(ctx, extension):
+	if ctx.author.id == 508315509398306827:
+		client.unload_extension(f"cogs.{extension}")
+		await ctx.send("Коги выгружены")
+	else:
+		await ctx.send("Вы не разработчик бота")
+
+
+@client.command()
+async def reload(ctx, extension):
+	if ctx.author.id == 508315509398306827:
+		client.unload_extension(f"cogs.{extension}")
+		client.load_extension(f"cogs.{extension}")
+		await ctx.send("Перезагрузка...")
+	else:
+		await ctx.send("Вы не разработчик бота")
+
+for filename in os.listdir("./cogs"):
+	if filename.endswith(".py"):
+		client.load_extension(f"cogs.{filename[:-3]}")
 
 #send_message_member
 @client.command()
@@ -30,7 +55,11 @@ async def say(ctx, user_id = None, *, args = None):
 		await ctx.channel.send('Укажите сообщение')
 
 #clear chat
-@client.command()
+@slash.command(
+    name="Ну шо чистка по расписанию",
+    description="Ну, дворщиком тож не плохо",
+    guild_ids=test_guilds
+)
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=100)
 
@@ -43,7 +72,11 @@ async def ping(ctx):
 	else: ctx.channel.send('Пашол нахуй ты не я, а я это ШАУРМА - бог')
 
 #kick
-@client.command()
+@slash.command(
+    name="Пашол нахуй сука", 
+    description="Репан по ебалу",
+    guild_ids=test_guilds 
+)
 async def kick(ctx, member: discord.Member,  *,  reason=None):
 	emb = discord.Embed(
             title='🤡', description='Кикнут участник: ' + member.mention,
@@ -54,7 +87,11 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #ban
-@client.command()
+@slash.command(
+    name="Бан чучело",
+    description="Кукумбит чучело в радиусе всего сервера",
+    guild_ids=test_guilds 
+)
 async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
@@ -65,7 +102,11 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #unban
-@client.command()
+@slash.command(
+    name="Стой десять год тюрьмы",
+    description="Ой, чучело сбежало",
+    guild_ids=test_guilds  
+)
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
@@ -83,6 +124,7 @@ async def unban(ctx, *, member: discord.Member):
 #--------------------------+
 #         Events           |
 #--------------------------+
+
 
 @client.event
 async def on_guild_join(guild):
@@ -112,6 +154,8 @@ async def on_guild_remove(guild):
 async def on_ready():
 	print('bot connected')
 	await client.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
+
+
 #--------------------------+
 
 token = os.environ.get('TOKENBOT')
