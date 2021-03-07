@@ -100,9 +100,12 @@ async def ping(ctx):
 #kick
 @slash.command(
     guild_ids=test_guilds,
+	name="kick",
     description="Кикает участника",
+   	type=Type.SUB_COMMAND,
     options=[
-        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.USER),
+        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
+               Type.USER, required=True),
     ]
 )
 async def kick(ctx, member: discord.Member,  *,  reason=None):
@@ -117,9 +120,12 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
 #ban
 @slash.command(
     guild_ids=test_guilds,
+   	name="ban",
     description="Банит участника",
+   	type=Type.SUB_COMMAND,
     options=[
-        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.USER),
+        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
+               Type.USER, required=True),
     ]
 )
 async def ban(ctx, member: discord.Member,  *,  reason=None):
@@ -134,10 +140,12 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
 #unban
 @slash.command(
     guild_ids=test_guilds,
+   	name="unban",
     description="Разбанивает",
+   	type=Type.SUB_COMMAND,
     options=[
         Option(
-            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER),
+            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER, required=True),
     ]
 )
 async def unban(ctx, *, member: discord.Member):
