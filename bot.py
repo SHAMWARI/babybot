@@ -93,7 +93,7 @@ async def say(ctx, user_id = None, *, args = None):
         Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.STRING),
     ]
 )
-async def clear(ctx, amount: int):
+async def clear(ctx, interaction, amount: int):
 	await ctx.channel.purge(limit=amount)
 
 #ping everyone
