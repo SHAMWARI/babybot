@@ -13,10 +13,11 @@ slash = SlashClient(client)
 test_guilds = [699964701098115123]
 
 #online bot
-@client.event
+@slash.event
 async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
+	await slash_client.register_guild_slash_command(guild_id, sc)
 
 @client.event
 async def on_guild_join(guild):
@@ -93,7 +94,7 @@ async def say(ctx, user_id = None, *, args = None):
         Option('Число', 'Задайте численный аргумент, что-бы очистить чат', Type.STRING),
     ]
 )
-async def clear(ctx, interaction, amount: int):
+async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=amount)
 
 #ping everyone
