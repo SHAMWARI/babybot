@@ -2,12 +2,14 @@ import discord
 import dislash
 from discord.ext import commands
 from discord.utils import get
-
+from dislash.interactions import *
+from dislash.slash_commands import SlashClient
 import os 
 
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
+slash = SlashClient(client)
 test_guilds = [699964701098115123]
 
 #online bot
@@ -91,7 +93,13 @@ async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit = amount)
 
 #kick
-@client.command()
+@slash.command(
+guild_ids = test_guilds,
+description = "Кикает участника",
+options = [
+        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка', Type.STRING),
+]
+)
 async def kick(ctx, member: discord.Member,  *,  reason = None):
 	emb = discord.Embed(
 		title='🤡', description='Кикнут участник: ' + member.mention,
