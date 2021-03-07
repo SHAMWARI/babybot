@@ -60,7 +60,7 @@ async def say(ctx, user_id = None, *, args = None):
     description="Ну, дворщиком тож не плохо",
     guild_ids=test_guilds
 )
-async def clear(ctx, amount: int):
+async def clear(ctx: Interaction, amount: int):
 	await ctx.channel.purge(limit=100)
 
 #ping everyone
@@ -77,7 +77,7 @@ async def ping(ctx):
     description="Репан по ебалу",
     guild_ids=test_guilds 
 )
-async def kick(ctx, member: discord.Member,  *,  reason=None):
+async def kick(ctx: Interaction, member: discord.Member,  *,  reason=None):
 	emb = discord.Embed(
             title='🤡', description='Кикнут участник: ' + member.mention,
             color=0xff0000)
@@ -92,7 +92,7 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
     description="Кукумбит чучело в радиусе всего сервера",
     guild_ids=test_guilds 
 )
-async def ban(ctx, member: discord.Member,  *,  reason=None):
+async def ban(ctx: Interaction, member: discord.Member,  *,  reason=None):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
             title='🤡', description='Забанен участник: ' + member.mention,
@@ -107,7 +107,7 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
     description="Ой, чучело сбежало",
     guild_ids=test_guilds  
 )
-async def unban(ctx, *, member: discord.Member):
+async def unban(ctx: Interaction, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
             title='👋', description='Разбанен участник: ' + member.mention,
