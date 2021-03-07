@@ -18,6 +18,15 @@ async def on_ready():
 	print('bot connected')
 	await client.change_presence(status = discord.Status.online, activity = discord.Game('/help'))
 
+#register slash command
+@slash.event
+async def on_ready():
+    sc = SlashCommand(
+        name="hello",
+        description="Says hello"
+    )
+    await slash.register_guild_slash_command(test_guild_id, sc)
+
 @client.event
 async def on_guild_join(guild):
   channel = client.get_channel(780153347051094026) 
