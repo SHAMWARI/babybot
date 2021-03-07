@@ -160,7 +160,7 @@ async def _on_ready():
 @slash.event
 async def on_ready():
     print("Slash client is ready")
-
+await slash.register_guild_slash_command(test_guild_id, sc)
 #--------------------------+
 
 token = os.environ.get('TOKENBOT')
