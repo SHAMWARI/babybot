@@ -86,15 +86,7 @@ async def say(ctx, user_id = None, *, args = None):
 		await ctx.channel.send('Укажите сообщение')
 
 #clear chat
-@slash.command(
-    guild_ids=test_guilds,
-   	name="clear",
-    description="Очищает чат",
-    options=[
-        Option('Число', 'Задайте численный аргумент для очистки чата, максимум - 100',
-               Type.STRING)
-    ]
-)
+@client.command()
 async def clear(ctx, amount: int):
 	await ctx.channel.purge(limit=100)
 
@@ -106,15 +98,7 @@ async def ping(ctx):
 	await ctx.channel.send('@everyone, здарова ебать!')
 
 #kick
-@slash.command(
-    guild_ids=test_guilds,
-	name="kick",
-    description="Кикает участника",
-    options=[
-        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
-               Type.USER)
-    ]
-)
+@client.command()
 async def kick(ctx, member: discord.Member,  *,  reason=None):
 	emb = discord.Embed(
             title='🤡', description='Кикнут участник: ' + member.mention,
@@ -125,15 +109,7 @@ async def kick(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #ban
-@slash.command(
-    guild_ids=test_guilds,
-   	name="ban",
-    description="Банит участника",
-    options=[
-        Option('Никнейм', 'Задайте никнейм для кукумбича вашего дружка',
-               Type.USER)
-    ]
-)
+@client.command()
 async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
@@ -144,15 +120,7 @@ async def ban(ctx, member: discord.Member,  *,  reason=None):
 	await ctx.send(embed=emb)
 
 #unban
-@slash.command(
-    guild_ids=test_guilds,
-   	name="unban",
-    description="Разбанивает",
-    options=[
-        Option(
-            'Никнейм', 'Задайте никнейм, что-бы вытащить кукумбер из его жопы', Type.USER)
-    ]
-)
+@client.command()
 async def unban(ctx, *, member: discord.Member):
 	await ctx.channel.purge(limit=1)
 	emb = discord.Embed(
