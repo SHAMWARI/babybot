@@ -4,7 +4,6 @@ from discord.ext import commands
 PREFIX = '/'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
-slash = slash_commands.SlashClient(client)
 test_guilds = [699964701098115123]
 
 @client.command()
