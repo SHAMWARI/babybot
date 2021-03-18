@@ -1,7 +1,7 @@
 import discord, os
 from discord.ext import commands
 
-PREFIX = '/'
+PREFIX = '.'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
 test_guilds = [699964701098115123]
@@ -108,7 +108,7 @@ async def unban(ctx, *, member: discord.Member):
 
 @client.event
 async def on_guild_join(guild):
-  channel = client.get_channel(780153347051094026)
+  channel = client.get_channel(822054854125027338)
   log = discord.Embed(color=discord.Color.green())
   log.title = "Добавлен на сервер"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
@@ -120,7 +120,7 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_guild_remove(guild):
-  channel = client.get_channel(780153347051094026)
+  channel = client.get_channel(822054854125027338)
   log = discord.Embed(color=discord.Color.red())
   log.title = "Кикнут с сервера или сервер был удален"
   log.add_field(name="Название", value=f"> {guild.name}", inline=False)
